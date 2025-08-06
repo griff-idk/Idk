@@ -1,0 +1,23 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Espera a que el personaje cargue y tenga HumanoidRootPart
+if not LocalPlayer.Character or not LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+    LocalPlayer.CharacterAdded:Wait()
+    LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+end
+
+-- Teletransporte a la posición deseada
+local char = LocalPlayer.Character
+if char and char:FindFirstChild("HumanoidRootPart") then
+    char.HumanoidRootPart.CFrame = CFrame.new(414.6, 136.7, -45.0)
+end
+
+-- Ejecutar el script de auto farm automáticamente después del teletransporte
+local success, err = pcall(function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/w1MrmqJH"))()
+end)
+
+if not success then
+    warn("Error al ejecutar el script de auto farm:", err)
+end
